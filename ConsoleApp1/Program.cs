@@ -38,7 +38,7 @@ namespace ConsoleApp1
         //    add { this._orderEventHandler += value; }
         //    remove { this._orderEventHandler -= value; }
         //}
-        public event OrderEventHandler Order;
+        public event EventHandler Order;
 
         public void Walkin()
         {
@@ -79,12 +79,14 @@ namespace ConsoleApp1
         public string Size { get; set; }
     }
 
-    public delegate void OrderEventHandler(Customer customer, OrderEventArgs e);
+    //public delegate void OrderEventHandler(Customer customer, OrderEventArgs e);
 
     public class Waiter
     {
-        public void Action(Customer customer, OrderEventArgs e)
+        public void Action(object sender, EventArgs e1)
         {
+            Customer customer = (Customer) sender;
+            OrderEventArgs e = (OrderEventArgs) e1;
             Console.WriteLine("I will serve u the dish--{0}", e.Size);
             double price = 10;
             switch (e.Size)
