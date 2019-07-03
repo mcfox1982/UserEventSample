@@ -55,11 +55,16 @@ namespace ConsoleApp1
             Console.WriteLine("let me think");
             Thread.Sleep(2000);
 
+           this.OnOrder("dishA","big");
+        }
+
+        protected void OnOrder(string dishname, string size)
+        {
             if (this.Order != null)
             {
                 OrderEventArgs e = new OrderEventArgs();
-                e.DishName = "Dish A";
-                e.Size = "big";
+                e.DishName = dishname;
+                e.Size = size;
                 this.Order.Invoke(this, e);
             }
         }
